@@ -17,7 +17,7 @@ def classify_ndvi(df):
         date_col = df.columns[0]  # Assume the first column is date
         for prop in df.columns[1:]:  # All other columns are properties
             values = df[prop]
-            dates = pd.to_datetime(df[date_col], format='%d-%m-%Y')
+            dates = pd.to_datetime(df[date_col], dayfirst=False, errors='coerce')
             kharif = values[dates.dt.month.isin([7, 8, 9])].max()  # Jul-Sep
             rabi = values[dates.dt.month.isin([11, 12, 1, 2])].max()  # Nov-Feb
             zaid = values[dates.dt.month.isin([4, 5, 6])].max()  # Apr-Jun
