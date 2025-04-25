@@ -18,9 +18,9 @@ def classify_ndvi(df):
         for prop in df.columns[1:]:  # All other columns are properties
             values = df[prop]
             dates = pd.to_datetime(df[date_col], dayfirst=False, errors='coerce')
-            kharif = values[dates.dt.month.isin([7, 8, 9])].max()  # Jul-Sep
-            rabi = values[dates.dt.month.isin([11, 12, 1, 2])].max()  # Nov-Feb
-            zaid = values[dates.dt.month.isin([4, 5, 6])].max()  # Apr-Jun
+            kharif = values[dates.dt.month.isin([6, 7, 8, 9, 10])].max()  # Jul-Sep
+            rabi = values[dates.dt.month.isin([11, 12, 1, 2, 3])].max()  # Nov-Feb
+            zaid = values[dates.dt.month.isin([4, 5])].max()  # Apr-Jun
 
             # Crop classification based on NDVI thresholds
             if values.max() <= 0.1:
